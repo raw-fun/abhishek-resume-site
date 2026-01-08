@@ -6,346 +6,277 @@
     <title>Abhishek Sarker - Professional Resume</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --navy-primary: #0f172a; /* Slate 900 - More modern than standard navy */
+            --navy-secondary: #1e293b; /* Slate 800 */
+            --accent-gold: #fbbf24; /* Subtle gold for minimal accents */
+        }
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f3f4f6;
-            -webkit-print-color-adjust:  exact;
+            background-color: #e2e8f0;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
         }
-        . sidebar {
-            background-color: #1a2a44; /* Navy Blue */
-            color: #ffffff;
+        .sidebar-bg {
+            background-color: var(--navy-primary);
+            color: #f1f5f9;
         }
-        .text-navy {
-            color: #1a2a44;
-        }
-        .bg-navy {
-            background-color: #1a2a44;
-        }
-        .border-navy {
-            border-color: #1a2a44;
-        }
-        /* Print Specific Styles */
+        /* Refined Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #cbd5e1; }
+        ::-webkit-scrollbar-thumb { background: #64748b; border-radius: 3px; }
+
+        /* Print Optimization */
         @media print {
-            body { background-color: white; margin: 0; padding: 0; }
-            .no-print { display: none ! important; }
+            body { background-color: white; margin: 0; }
+            .no-print { display: none !important; }
+            .page-break-avoid { break-inside: avoid; }
             .main-container { 
                 box-shadow: none !important; 
                 width: 100% !important; 
                 max-width: 100% !important;
                 margin: 0 !important;
-                min-height: auto !important;
             }
-            .sidebar { padding: 20px !important; width: 35% !important; }
-            main { padding: 20px !important; width: 65% !important; }
-            /* Ensure background colors print */
-            * { -webkit-print-color-adjust:  exact ! important; print-color-adjust: exact !important; }
+            .sidebar-bg { -webkit-print-color-adjust: exact; }
+            /* Force exact colors */
         }
     </style>
 </head>
-<body class="p-4 md:p-10 flex justify-center bg-gray-100">
+<body class="p-6 md:p-10 flex justify-center text-slate-800 antialiased">
 
-    <div class="main-container bg-white w-full max-w-[1200px] shadow-2xl flex flex-col md:flex-row min-h-[1400px]">
+    <div class="main-container bg-white w-full max-w-[1150px] shadow-2xl flex flex-col md:flex-row min-h-[1400px]">
         
-        <!-- ================= SIDEBAR (LEFT COLUMN) ================= -->
-        <aside class="sidebar w-full md:w-[35%] p-8 flex flex-col gap-8">
-            
-            <!-- Profile Image - UPDATED WITH YOUR IMAGE -->
-            <div class="flex justify-center mb-2">
-                <div class="w-44 h-44 rounded-full border-4 border-white overflow-hidden bg-gray-300 shadow-lg relative">
-                    <!-- ✅ আপনার আপলোড করা ইমেজ এখানে ব্যবহার করা হয়েছে -->
+        <!-- ================= SIDEBAR (LEFT) ================= -->
+        <aside class="sidebar-bg w-full md:w-[32%] p-8 flex flex-col gap-8 relative">
+            <!-- Decorative Top Border -->
+            <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-blue-500 to-indigo-600"></div>
+
+            <!-- Profile Image -->
+            <div class="flex justify-center mt-2">
+                <div class="w-44 h-44 rounded-full p-1 bg-white/10 backdrop-blur-sm shadow-xl">
                     <img src="https://raw.githubusercontent.com/raw-fun/abhishek-resume-site/main/profile.png" 
                          alt="Abhishek Sarker" 
-                         class="w-full h-full object-cover"
-                         crossorigin="anonymous">
+                         class="w-full h-full object-cover rounded-full border-4 border-slate-800"
+                         onerror="this.src='https://ui-avatars.com/api/?name=Abhishek+Sarker&background=0F172A&color=fff&size=256'">
                 </div>
             </div>
 
-            <!-- Contact Info -->
+            <!-- Contact Information -->
             <section>
-                <h2 class="text-lg font-bold border-b border-gray-500 pb-2 mb-4 uppercase tracking-wider flex items-center gap-2">
-                    <i class="fas fa-address-card text-sm"></i> Contact
-                </h2>
-                <ul class="text-sm space-y-3 font-light">
-                    <li class="flex items-start gap-3">
-                        <i class="fas fa-phone-alt mt-1 text-gray-400"></i>
+                <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-slate-400 mb-4 border-b border-slate-700 pb-2">
+                    Contact Details
+                </h3>
+                <ul class="text-[11px] space-y-3 font-light text-slate-300">
+                    <li class="flex items-center gap-3 group">
+                        <span class="w-8 h-8 rounded bg-slate-800 flex items-center justify-center text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-all">
+                            <i class="fas fa-phone"></i>
+                        </span>
                         <span>+880 1712 622514</span>
                     </li>
-                    <li class="flex items-start gap-3">
-                        <i class="fas fa-envelope mt-1 text-gray-400"></i>
+                    <li class="flex items-center gap-3 group">
+                        <span class="w-8 h-8 rounded bg-slate-800 flex items-center justify-center text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-all">
+                            <i class="fas fa-envelope"></i>
+                        </span>
                         <span class="break-all">abhishek.sarker@bracu.ac.bd</span>
                     </li>
-                    <li class="flex items-start gap-3">
-                        <i class="fas fa-map-marker-alt mt-1 text-gray-400"></i>
+                    <li class="flex items-center gap-3 group">
+                        <span class="w-8 h-8 rounded bg-slate-800 flex items-center justify-center text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-all">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </span>
                         <span>Dhaka 1207, Bangladesh</span>
                     </li>
                 </ul>
             </section>
 
-            <!-- Profile Overview -->
-            <section>
-                <h2 class="text-lg font-bold border-b border-gray-500 pb-2 mb-4 uppercase tracking-wider flex items-center gap-2">
-                    <i class="fas fa-user text-sm"></i> Profile Overview
-                </h2>
-                <p class="text-xs text-gray-300 leading-relaxed text-justify font-light">
-                    A curious and driven professional architecting a career at the intersection of culture (Music), capital (Investments/Real Estate), and code (AI). Believes the future of business lies in empathetic leadership, data-informed creativity, and strategic asset building—whether in people, startups, or portfolios.  Seeking a dynamic internship to apply this holistic lens to sales, marketing, and management, directly contributing to growth and innovation. 
+            <!-- AVAILABILITY / STATUS (Redesigned) -->
+            <section class="bg-slate-800/50 rounded-lg p-4 border-l-4 border-green-500 shadow-sm">
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="relative flex h-2.5 w-2.5">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+                    </span>
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-white">Current Status</h3>
+                </div>
+                <p class="text-[10px] text-slate-300 leading-relaxed font-light">
+                    Available <strong class="text-white">Immediately</strong> for internships. <br>
+                    Full-time availability post-April 2026.
                 </p>
             </section>
 
-            <!-- OBJECTIVE & AVAILABILITY -->
-            <section class="bg-[#243b5e] p-4 rounded-lg border border-gray-600 shadow-inner">
-                <h2 class="text-lg font-bold border-b border-gray-400 pb-2 mb-3 uppercase tracking-wider flex items-center gap-2 text-white">
-                    <i class="fas fa-bullseye text-sm"></i> Objective
-                </h2>
-                <div class="text-xs text-white space-y-2">
-                    <p class="font-semibold text-blue-200 uppercase mb-1"><i class="fas fa-clock mr-1"></i> Availability: </p>
-                    <p class="leading-relaxed font-light">
-                        Immediately for internship opportunities, with full-time availability post-April 2026. 
-                    </p>
-                </div>
+            <!-- Profile Overview -->
+            <section>
+                <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-slate-400 mb-3 border-b border-slate-700 pb-2">
+                    Profile
+                </h3>
+                <p class="text-[10px] leading-5 text-justify font-light text-slate-300">
+                    A curious and driven professional architecting a career at the intersection of <span class="text-white font-medium">Culture</span>, <span class="text-white font-medium">Capital</span>, and <span class="text-white font-medium">Code</span>. I believe the future of business lies in empathetic leadership and data-informed creativity. Seeking a dynamic internship to apply this holistic lens to sales, marketing, and management.
+                </p>
             </section>
 
-            <!-- Core Competencies (Updated List) -->
+            <!-- Core Competencies -->
             <section>
-                <h2 class="text-lg font-bold border-b border-gray-500 pb-2 mb-4 uppercase tracking-wider flex items-center gap-2">
-                    <i class="fas fa-sliders-h text-sm"></i> Core Competencies
-                </h2>
-                <ul class="space-y-2 text-xs font-light text-gray-100">
-                    <li class="flex items-start gap-2">
-                        <i class="fas fa-check text-blue-400 mt-0.5"></i> Sales & Business Development
-                    </li>
-                    <li class="flex items-start gap-2">
-                        <i class="fas fa-check text-blue-400 mt-0.5"></i> Strategic Thinking & Market Analysis
-                    </li>
-                    <li class="flex items-start gap-2">
-                        <i class="fas fa-check text-blue-400 mt-0.5"></i> People Management & Team Leadership
-                    </li>
-                    <li class="flex items-start gap-2">
-                        <i class="fas fa-check text-blue-400 mt-0.5"></i> Persuasive Communication & Negotiation
-                    </li>
-                    <li class="flex items-start gap-2">
-                        <i class="fas fa-check text-blue-400 mt-0.5"></i> Entrepreneurial Mindset & Venture Strategy
-                    </li>
-                    <li class="flex items-start gap-2">
-                        <i class="fas fa-check text-blue-400 mt-0.5"></i> Digital & Technology Fluency
-                    </li>
-                    <li class="flex items-start gap-2">
-                        <i class="fas fa-check text-blue-400 mt-0.5"></i> Investment Analysis (Real Estate, PE, Digital Assets)
-                    </li>
-                    <li class="flex items-start gap-2">
-                        <i class="fas fa-check text-blue-400 mt-0.5"></i> Client Relations & Public Relations
-                    </li>
-                    <li class="flex items-start gap-2">
-                        <i class="fas fa-check text-blue-400 mt-0.5"></i> Organizational & Project Management
-                    </li>
-                    <li class="flex items-start gap-2">
-                        <i class="fas fa-check text-blue-400 mt-0.5"></i> Critical Thinking & Analytical Problem-Solving
-                    </li>
-                    <li class="flex items-start gap-2">
-                        <i class="fas fa-check text-blue-400 mt-0.5"></i> Research & Documentation
-                    </li>
-                    <li class="flex items-start gap-2">
-                        <i class="fas fa-check text-blue-400 mt-0.5"></i> Business Analysis & Requirement Gathering
-                    </li>
+                <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-slate-400 mb-4 border-b border-slate-700 pb-2">
+                    Core Competencies
+                </h3>
+                <ul class="text-[10px] space-y-2 font-light text-slate-300">
+                    <li class="flex items-start gap-2"><i class="fas fa-check text-blue-500 mt-0.5"></i> Sales & Business Development</li>
+                    <li class="flex items-start gap-2"><i class="fas fa-check text-blue-500 mt-0.5"></i> Strategic Thinking & Analysis</li>
+                    <li class="flex items-start gap-2"><i class="fas fa-check text-blue-500 mt-0.5"></i> Team Leadership & Management</li>
+                    <li class="flex items-start gap-2"><i class="fas fa-check text-blue-500 mt-0.5"></i> Entrepreneurial Venture Strategy</li>
+                    <li class="flex items-start gap-2"><i class="fas fa-check text-blue-500 mt-0.5"></i> Investment Analysis (RE/PE)</li>
+                    <li class="flex items-start gap-2"><i class="fas fa-check text-blue-500 mt-0.5"></i> Public Relations & Negotiation</li>
+                    <li class="flex items-start gap-2"><i class="fas fa-check text-blue-500 mt-0.5"></i> Business Analysis & Requirements</li>
                 </ul>
             </section>
 
-            <!-- Technical & Software Skills -->
+            <!-- Tech Skills -->
             <section>
-                <h2 class="text-lg font-bold border-b border-gray-500 pb-2 mb-4 uppercase tracking-wider flex items-center gap-2">
-                    <i class="fas fa-laptop-code text-sm"></i> Technical Skills
-                </h2>
-                <div class="text-xs space-y-3 text-gray-300 font-light">
+                <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-slate-400 mb-4 border-b border-slate-700 pb-2">
+                    Technical Arsenal
+                </h3>
+                <div class="text-[10px] space-y-3 font-light text-slate-300">
                     <div>
-                        <strong class="text-white block mb-1">Productivity & Office:</strong>
-                        Microsoft Office Suite (Word, Excel, PowerPoint), Google Suites (Sheets, Slides, Docs).
+                        <div class="text-white font-medium mb-0.5">AI & Productivity</div>
+                        <div class="opacity-80">ChatGPT, DeepSeek, Manus AI, MS Office, Google Suite</div>
                     </div>
                     <div>
-                        <strong class="text-white block mb-1">AI Applications:</strong>
-                        ChatGPT, DeepSeek, Manus AI, Midjourney, Veo3, Nano Banana. 
+                        <div class="text-white font-medium mb-0.5">Development</div>
+                        <div class="opacity-80">Python, Java, C++ (Foundational)</div>
                     </div>
                     <div>
-                        <strong class="text-white block mb-1">Coding Basics:</strong>
-                        Python, Java, C++. 
-                    </div>
-                    <div>
-                        <strong class="text-white block mb-1">Social Media:</strong>
-                        Facebook, YouTube, Instagram, TikTok, Threads, Twitch, Discord.
+                        <div class="text-white font-medium mb-0.5">Digital Platforms</div>
+                        <div class="opacity-80">Social Media Management, Content Strategy</div>
                     </div>
                 </div>
             </section>
-
-            <!-- Languages -->
+            
+            <!-- Interests Tags -->
             <section>
-                <h2 class="text-lg font-bold border-b border-gray-500 pb-2 mb-4 uppercase tracking-wider flex items-center gap-2">
-                    <i class="fas fa-language text-sm"></i> Languages
-                </h2>
-                <div class="text-xs space-y-1">
-                    <p><strong class="text-white">English: </strong> Fluent</p>
-                    <p><strong class="text-white">Bengali:</strong> Native</p>
-                    <p><strong class="text-white">Hindi:</strong> Passive</p>
-                    <p><strong class="text-white">Japanese:</strong> Passive</p>
-                </div>
-            </section>
-
-            <!-- Interests -->
-            <section>
-                <h2 class="text-lg font-bold border-b border-gray-500 pb-2 mb-4 uppercase tracking-wider flex items-center gap-2">
-                    <i class="fas fa-heart text-sm"></i> Interests
-                </h2>
-                <div class="flex flex-wrap gap-2">
-                    <span class="text-[10px] px-2 py-1 border border-gray-500 rounded hover:bg-white hover:text-navy transition">Venture Capital</span>
-                    <span class="text-[10px] px-2 py-1 border border-gray-500 rounded hover:bg-white hover:text-navy transition">AI Integration</span>
-                    <span class="text-[10px] px-2 py-1 border border-gray-500 rounded hover:bg-white hover:text-navy transition">Real Estate</span>
-                    <span class="text-[10px] px-2 py-1 border border-gray-500 rounded hover:bg-white hover: text-navy transition">Behavioral Econ</span>
-                    <span class="text-[10px] px-2 py-1 border border-gray-500 rounded hover:bg-white hover: text-navy transition">Bitcoin/Alt Assets</span>
-                    <span class="text-[10px] px-2 py-1 border border-gray-500 rounded hover:bg-white hover:text-navy transition">Music & Sports</span>
+                <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-slate-400 mb-4 border-b border-slate-700 pb-2">
+                    Interests
+                </h3>
+                <div class="flex flex-wrap gap-1.5">
+                    <span class="px-2 py-1 bg-slate-800 text-[9px] rounded text-slate-300 border border-slate-700">Venture Capital</span>
+                    <span class="px-2 py-1 bg-slate-800 text-[9px] rounded text-slate-300 border border-slate-700">Real Estate</span>
+                    <span class="px-2 py-1 bg-slate-800 text-[9px] rounded text-slate-300 border border-slate-700">Behavioral Econ</span>
+                    <span class="px-2 py-1 bg-slate-800 text-[9px] rounded text-slate-300 border border-slate-700">AI Integration</span>
+                    <span class="px-2 py-1 bg-slate-800 text-[9px] rounded text-slate-300 border border-slate-700">Music</span>
                 </div>
             </section>
         </aside>
 
-        <!-- ================= MAIN CONTENT (RIGHT COLUMN) ================= -->
-        <main class="w-full md:w-[65%] p-8 md:p-12 bg-white text-gray-800">
-            
+        <!-- ================= MAIN CONTENT (RIGHT) ================= -->
+        <main class="w-full md:w-[68%] p-10 md:p-16 bg-white text-slate-800 relative">
+            <!-- Watermark text (optional, subtle) -->
+            <div class="absolute top-6 right-10 text-[10px] text-slate-300 font-bold tracking-widest uppercase no-print">Resume 2025</div>
+
             <!-- Header -->
-            <header class="mb-10 border-b-2 border-gray-100 pb-6">
-                <h1 class="text-5xl font-extrabold text-navy tracking-tight mb-2 uppercase">Abhishek Sarker</h1>
-                <h3 class="text-xl text-gray-500 font-medium tracking-widest uppercase">Business Graduate & Emerging Leader</h3>
+            <header class="mb-14">
+                <h1 class="text-5xl font-black text-slate-900 tracking-tight mb-2 uppercase">Abhishek <span class="text-blue-700">Sarker</span></h1>
+                <p class="text-sm font-semibold tracking-[0.3em] uppercase text-slate-500">Business Graduate & Emerging Leader</p>
             </header>
 
-            <!-- Education Section -->
-            <section class="mb-10">
-                <div class="flex items-center gap-3 mb-6">
-                    <span class="bg-navy text-white w-10 h-10 flex items-center justify-center rounded shadow-md"><i class="fas fa-graduation-cap"></i></span>
-                    <h2 class="text-2xl font-bold text-navy uppercase tracking-tight">Education</h2>
+            <!-- Education -->
+            <section class="mb-12 page-break-avoid">
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-slate-800 shadow-sm border border-slate-200">
+                        <i class="fas fa-graduation-cap text-lg"></i>
+                    </div>
+                    <h2 class="text-xl font-bold uppercase tracking-wider text-slate-800">Education</h2>
                 </div>
-                
-                <div class="space-y-8 border-l-[3px] border-navy ml-5 pl-8 relative">
-                    
+
+                <div class="border-l-2 border-slate-200 ml-5 space-y-10 pl-8 pb-2">
                     <!-- BBA -->
-                    <div class="relative group">
-                        <div class="absolute -left-[43px] top-1.5 w-5 h-5 rounded-full bg-navy border-4 border-white shadow-sm group-hover:scale-110 transition"></div>
-                        <h4 class="font-bold text-xl text-navy">Bachelor of Business Administration (BBA)</h4>
-                        <div class="flex justify-between items-center text-sm mt-1 mb-2">
-                            <span class="font-bold text-blue-700">BRAC University, Dhaka</span>
-                            <span class="italic text-gray-500 font-semibold bg-gray-100 px-2 py-0.5 rounded">Jan 2018 - Apr 2026 (Exp)</span>
+                    <div class="relative">
+                        <span class="absolute -left-[41px] top-1.5 h-4 w-4 rounded-full border-4 border-white bg-blue-600 shadow-sm"></span>
+                        <div class="flex flex-col sm:flex-row justify-between sm:items-baseline mb-2">
+                            <h3 class="text-lg font-bold text-slate-800">Bachelor of Business Administration (BBA)</h3>
+                            <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded">2018 - 2026 (Exp)</span>
                         </div>
-                        <ul class="list-disc list-outside ml-4 text-sm text-gray-700 space-y-1">
-                            <li>Comprehensive education in entrepreneurial thinking, people-centric leadership, and strategic communication. </li>
-                            <li>Expertise in sales principles, management fundamentals, and technology-driven business strategy.</li>
-                            <li>Cultivated a founder's mindset with interest in venture creation and emerging asset classes (RE, PE, Digital Assets, AI).</li>
-                            <li><strong>Coursework:</strong> Basic Education in light coding at Python, Java & C++. </li>
-                        </ul>
+                        <div class="text-sm font-semibold text-slate-600 mb-2">BRAC University, Dhaka</div>
+                        <p class="text-sm text-slate-500 leading-relaxed mb-2">
+                            Focusing on entrepreneurial thinking, leadership, and technology-driven business strategy. Cultivated a founder’s mindset with deep interest in venture creation.
+                        </p>
+                        <p class="text-xs text-slate-500 italic bg-slate-50 p-2 rounded border-l-2 border-slate-300">
+                            <strong>Relevant Coursework:</strong> Foundational programming in Python, Java & C++.
+                        </p>
                     </div>
 
-                    <!-- Bachelor of Music (UPDATED) -->
-                    <div class="relative group">
-                        <div class="absolute -left-[43px] top-1.5 w-5 h-5 rounded-full bg-navy border-4 border-white shadow-sm group-hover:scale-110 transition"></div>
-                        <!-- Updated Title -->
-                        <h4 class="font-bold text-xl text-navy">BACHELOR IN MUSIC</h4>
-                        <!-- Updated Details -->
-                        <div class="text-md font-semibold text-gray-700 mt-1">Rabindra Shangeet & Classical Music</div>
-                        <div class="flex justify-between items-center text-sm mt-1 mb-2">
-                            <!-- Updated Academy Name -->
-                            <span class="font-bold text-blue-700">BulBul Lolita Kola Academy (BAFA)</span>
-                            <span class="italic text-gray-500 font-semibold bg-gray-100 px-2 py-0.5 rounded">Dec 2014</span>
+                    <!-- Music -->
+                    <div class="relative">
+                        <span class="absolute -left-[41px] top-1.5 h-4 w-4 rounded-full border-4 border-white bg-slate-400 shadow-sm"></span>
+                        <div class="flex flex-col sm:flex-row justify-between sm:items-baseline mb-2">
+                            <h3 class="text-lg font-bold text-slate-800">Bachelor of Music</h3>
+                            <span class="text-xs font-bold text-slate-500 bg-slate-50 px-2 py-1 rounded">Dec 2014</span>
                         </div>
-                        <ul class="list-disc list-outside ml-4 text-sm text-gray-700 space-y-1">
-                            <li>Mastered intricate raga structures and time signatures (taal), developing exceptional attention to detail.</li>
-                            <li>Performed in solo and ensemble settings, requiring rigorous preparation and focus under pressure.</li>
-                            <li>Gained extensive stage experience, building confidence in public presentation. </li>
-                        </ul>
+                        <div class="text-sm font-semibold text-slate-600 mb-2">BulBul Lolita Kola Academy (BAFA)</div>
+                        <p class="text-sm text-slate-500 leading-relaxed">
+                            Specialized in <strong>Rabindra Shangeet & Classical Music</strong>. Mastered intricate raga structures, disciplined practice, and performance under pressure.
+                        </p>
                     </div>
 
                     <!-- A Levels -->
-                    <div class="relative group">
-                        <div class="absolute -left-[43px] top-1.5 w-5 h-5 rounded-full bg-navy border-4 border-white shadow-sm group-hover:scale-110 transition"></div>
-                        <h4 class="font-bold text-lg text-navy">GCE A-Levels (Science)</h4>
-                        <div class="flex justify-between items-center text-sm mt-1 mb-2">
-                            <span class="font-bold text-blue-700">Sunnydale, Dhaka</span>
-                            <span class="italic text-gray-500 font-semibold bg-gray-100 px-2 py-0.5 rounded">July 2017</span>
-                        </div>
-                        <p class="text-sm text-gray-600">Focused on analytical thinking, quantitative insight, and systematic problem-solving.</p>
-                    </div>
-
-                    <!-- O Levels -->
-                    <div class="relative group">
-                        <div class="absolute -left-[43px] top-1.5 w-5 h-5 rounded-full bg-navy border-4 border-white shadow-sm group-hover:scale-110 transition"></div>
-                        <h4 class="font-bold text-lg text-navy">GCE O-Levels (Science)</h4>
-                        <div class="flex justify-between items-center text-sm mt-1 mb-2">
-                            <span class="font-bold text-blue-700">Sunnydale, Dhaka</span>
-                            <span class="italic text-gray-500 font-semibold bg-gray-100 px-2 py-0.5 rounded">July 2015</span>
-                        </div>
-                        <p class="text-sm text-gray-600">Strong academic distinction with A grades in the majority of subjects.</p>
+                    <div class="relative">
+                        <span class="absolute -left-[41px] top-1.5 h-4 w-4 rounded-full border-4 border-white bg-slate-400 shadow-sm"></span>
+                        <h3 class="text-base font-bold text-slate-800">GCE A-Levels (Science)</h3>
+                        <div class="text-sm text-slate-600">Sunnydale, Dhaka <span class="mx-2 text-slate-300">|</span> 2017</div>
                     </div>
                 </div>
             </section>
 
-            <!-- Projects & Leadership Section -->
-            <section>
-                <div class="flex items-center gap-3 mb-6">
-                    <span class="bg-navy text-white w-10 h-10 flex items-center justify-center rounded shadow-md"><i class="fas fa-rocket"></i></span>
-                    <h2 class="text-2xl font-bold text-navy uppercase tracking-tight">Projects & Leadership</h2>
+            <!-- Experience / Projects -->
+            <section class="page-break-avoid">
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-slate-800 shadow-sm border border-slate-200">
+                        <i class="fas fa-briefcase text-lg"></i>
+                    </div>
+                    <h2 class="text-xl font-bold uppercase tracking-wider text-slate-800">Key Projects & Leadership</h2>
                 </div>
-                
-                <div class="space-y-8 border-l-[3px] border-navy ml-5 pl-8 relative">
+
+                <div class="border-l-2 border-slate-200 ml-5 space-y-10 pl-8">
                     
-                    <!-- Sales Strategy Project -->
-                    <div class="relative group">
-                        <div class="absolute -left-[43px] top-1.5 w-5 h-5 rounded-full bg-navy border-4 border-white shadow-sm group-hover:scale-110 transition"></div>
-                        <h4 class="font-bold text-lg text-navy">Sales & Venture Strategy Project (Academic)</h4>
-                        <div class="text-sm text-blue-700 font-semibold mb-2">BRAC University | 2024</div>
-                        <ul class="list-disc list-outside ml-4 text-sm text-gray-700 space-y-1">
-                            <li>Led a team to develop a comprehensive go-to-market strategy for a hypothetical AI-powered service (market sizing, sales funnel, financials).</li>
-                            <li>Presented strategy to a panel, receiving top marks for persuasive delivery and strategic depth.</li>
+                    <!-- Sales Strategy -->
+                    <div class="relative">
+                        <span class="absolute -left-[41px] top-1.5 h-4 w-4 rounded-full border-4 border-white bg-blue-600 shadow-sm"></span>
+                        <h3 class="text-lg font-bold text-slate-800">Sales & Venture Strategy Project</h3>
+                        <div class="text-xs font-bold text-blue-600 mb-2">BRAC University | Academic Lead | 2024</div>
+                        <ul class="list-disc ml-4 text-sm text-slate-600 leading-relaxed space-y-1 marker:text-blue-300">
+                            <li>Orchestrated a comprehensive go-to-market strategy for an AI-powered service, analyzing market size and sales funnels.</li>
+                            <li>Awarded top marks for strategic depth and persuasive panel presentation.</li>
                         </ul>
                     </div>
 
-                    <!-- Investment Analysis -->
-                    <div class="relative group">
-                        <div class="absolute -left-[43px] top-1.5 w-5 h-5 rounded-full bg-navy border-4 border-white shadow-sm group-hover:scale-110 transition"></div>
-                        <h4 class="font-bold text-lg text-navy">Emerging Markets Investment Analysis</h4>
-                        <div class="text-sm text-blue-700 font-semibold mb-2">Independent Research | 2023 - Present</div>
-                        <ul class="list-disc list-outside ml-4 text-sm text-gray-700 space-y-1">
-                            <li>Conduct ongoing analysis of real estate, PE, and stock opportunities in USA, Africa, Europe, Dubai, and South Asia.</li>
-                            <li>Building financial models and assessing risk/return profiles. </li>
-                            <li>Monitor trends in digital assets and AI-driven business models to inform personal investment thesis.</li>
+                    <!-- Investment Research -->
+                    <div class="relative">
+                        <span class="absolute -left-[41px] top-1.5 h-4 w-4 rounded-full border-4 border-white bg-blue-600 shadow-sm"></span>
+                        <h3 class="text-lg font-bold text-slate-800">Emerging Markets Investment Analysis</h3>
+                        <div class="text-xs font-bold text-blue-600 mb-2">Independent Researcher | 2023 - Present</div>
+                        <ul class="list-disc ml-4 text-sm text-slate-600 leading-relaxed space-y-1 marker:text-blue-300">
+                            <li>Conducting global analysis (USA, Africa, Dubai, South Asia) on Real Estate, PE, and Stock opportunities.</li>
+                            <li>Building robust financial models to assess risk/return profiles for personal investment theses.</li>
                         </ul>
                     </div>
 
                     <!-- MUN -->
-                    <div class="relative group">
-                        <div class="absolute -left-[43px] top-1.5 w-5 h-5 rounded-full bg-navy border-4 border-white shadow-sm group-hover:scale-110 transition"></div>
-                        <h4 class="font-bold text-lg text-navy">MUN & Diplomatic Engagement</h4>
-                        <div class="text-sm text-blue-700 font-semibold mb-2">DUMUN, SDMUN, GHMUN | 2015 - 2024</div>
-                        <ul class="list-disc list-outside ml-4 text-sm text-gray-700 space-y-1">
-                            <li>Represented nations across three competitive conferences, researching geopolitical issues and drafting papers.</li>
-                            <li>Honed skills in public speaking, persuasive argumentation, and consensus-building under formal parliamentary procedure.</li>
-                        </ul>
+                    <div class="relative">
+                        <span class="absolute -left-[41px] top-1.5 h-4 w-4 rounded-full border-4 border-white bg-slate-400 shadow-sm"></span>
+                        <h3 class="text-base font-bold text-slate-800">Diplomatic Engagement (MUN)</h3>
+                        <div class="text-xs text-slate-500 mb-2">DUMUN, SDMUN, GHMUN | 2015 - 2024</div>
+                        <p class="text-sm text-slate-600">
+                            Researched complex geopolitical issues and negotiated resolutions, honing public speaking and consensus-building skills.
+                        </p>
                     </div>
 
-                    <!-- Community Impact -->
-                    <div class="relative group">
-                        <div class="absolute -left-[43px] top-1.5 w-5 h-5 rounded-full bg-navy border-4 border-white shadow-sm group-hover:scale-110 transition"></div>
-                        <h4 class="font-bold text-lg text-navy">Community & Social Impact Initiatives</h4>
-                        <div class="text-sm text-blue-700 font-semibold mb-2">Jaago, Gontobbo, Gaach Lagao | 2016 - 2023</div>
-                        <ul class="list-disc list-outside ml-4 text-sm text-gray-700 space-y-1">
-                            <li>Volunteered with prominent NGOs on educational outreach and environmental sustainability campaigns.</li>
-                            <li>Gained first-hand experience in event logistics, volunteer coordination, and executing community-focused projects.</li>
-                        </ul>
-                    </div>
-
-                    <!-- Student Leadership & Extra Curricular -->
-                    <div class="relative group">
-                        <div class="absolute -left-[43px] top-1.5 w-5 h-5 rounded-full bg-navy border-4 border-white shadow-sm group-hover:scale-110 transition"></div>
-                        <h4 class="font-bold text-lg text-navy">Student Leadership & Extra-Curriculars</h4>
-                        <div class="text-sm text-blue-700 font-semibold mb-2">Scouts, Sports, Committees | 2004 - Present</div>
-                        <ul class="list-disc list-outside ml-4 text-sm text-gray-700 space-y-1">
-                            <li><strong>Leadership: </strong> Roles in student committees organizing music, sports, scout, and debate events.  Managing budgets and coordinating teams.</li>
-                            <li><strong>Scouts & Sports:</strong> Participated in leadership camps and inter-university tournaments, developing resilience and discipline.</li>
-                        </ul>
+                    <!-- Community -->
+                    <div class="relative">
+                        <span class="absolute -left-[41px] top-1.5 h-4 w-4 rounded-full border-4 border-white bg-slate-400 shadow-sm"></span>
+                        <h3 class="text-base font-bold text-slate-800">Social Impact & Volunteering</h3>
+                        <div class="text-xs text-slate-500 mb-2">Jaago, Gontobbo, Gaach Lagao | 2016 - 2023</div>
+                        <p class="text-sm text-slate-600">
+                            Executed educational outreach and environmental campaigns. Gained hands-on experience in logistics and volunteer coordination.
+                        </p>
                     </div>
 
                 </div>
@@ -354,13 +285,10 @@
         </main>
     </div>
 
-    <!-- Print / Save Button -->
-    <div class="fixed bottom-8 right-8 no-print flex flex-col gap-3">
-        <button onclick="window.print()" class="bg-navy hover:bg-blue-900 text-white px-6 py-4 rounded-full shadow-2xl flex items-center gap-3 transition-all transform hover:scale-105 border-2 border-white">
-            <i class="fas fa-file-pdf text-xl"></i>
-            <span class="font-bold">Save as PDF</span>
-        </button>
-    </div>
+    <!-- Print Button -->
+    <button onclick="window.print()" class="no-print fixed bottom-8 right-8 bg-slate-900 text-white px-6 py-3 rounded-full shadow-lg hover:bg-blue-700 transition flex items-center gap-2 font-medium border border-slate-700">
+        <i class="fas fa-file-pdf"></i> Download PDF
+    </button>
 
 </body>
 </html>
