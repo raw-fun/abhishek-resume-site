@@ -9,9 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --navy-primary: #0f172a; /* Slate 900 - More modern than standard navy */
+            --navy-primary: #0f172a; /* Slate 900 */
             --navy-secondary: #1e293b; /* Slate 800 */
-            --accent-gold: #fbbf24; /* Subtle gold for minimal accents */
         }
         body {
             font-family: 'Inter', sans-serif;
@@ -19,28 +18,80 @@
             -webkit-print-color-adjust: exact;
             print-color-adjust: exact;
         }
+        
+        /* Web View Sidebar Background */
         .sidebar-bg {
             background-color: var(--navy-primary);
             color: #f1f5f9;
         }
-        /* Refined Scrollbar */
+
+        /* Scrollbar */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #cbd5e1; }
         ::-webkit-scrollbar-thumb { background: #64748b; border-radius: 3px; }
 
-        /* Print Optimization */
+        /* ================= PRINT SPECIFIC STYLES ================= */
         @media print {
-            body { background-color: white; margin: 0; }
+            @page {
+                size: A4;
+                margin: 0; /* Full bleed printing */
+            }
+            
+            body {
+                background-color: white;
+                margin: 0;
+                padding: 0;
+            }
+
             .no-print { display: none !important; }
-            .page-break-avoid { break-inside: avoid; }
+
+            /* Main Container for Print */
             .main-container { 
                 box-shadow: none !important; 
                 width: 100% !important; 
                 max-width: 100% !important;
                 margin: 0 !important;
+                display: block !important; /* Switch flex to block for page breaks */
+                
+                /* This gradient simulates the sidebar extending to Page 2 */
+                background: linear-gradient(to right, #0f172a 32%, white 32%) !important;
+                min-height: 297mm;
             }
-            .sidebar-bg { -webkit-print-color-adjust: exact; }
-            /* Force exact colors */
+
+            /* Sidebar Positioning for Print */
+            aside {
+                width: 32% !important;
+                float: left; /* Float sidebar to allow content to flow */
+                background-color: transparent !important; /* Uses container gradient */
+                color: white !important;
+                padding-right: 20px !important;
+                height: 100%;
+            }
+
+            /* Main Content Positioning for Print */
+            main {
+                width: 68% !important;
+                float: right;
+                padding-left: 40px !important;
+                padding-right: 30px !important;
+                padding-top: 40px !important;
+            }
+
+            /* Force Page Break */
+            .break-before-page {
+                page-break-before: always !important;
+                break-before: page !important;
+                padding-top: 40px !important; /* Space at top of page 2 */
+            }
+
+            /* Adjust Font Sizes for Print to fit perfectly */
+            h1 { font-size: 36px !important; }
+            h2 { font-size: 18px !important; }
+            h3 { font-size: 14px !important; }
+            p, li, span { font-size: 10px !important; line-height: 1.4 !important; }
+            
+            /* Remove web-only decorations */
+            .watermark { display: none; }
         }
     </style>
 </head>
@@ -49,13 +100,13 @@
     <div class="main-container bg-white w-full max-w-[1150px] shadow-2xl flex flex-col md:flex-row min-h-[1400px]">
         
         <!-- ================= SIDEBAR (LEFT) ================= -->
-        <aside class="sidebar-bg w-full md:w-[32%] p-8 flex flex-col gap-8 relative">
-            <!-- Decorative Top Border -->
-            <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-blue-500 to-indigo-600"></div>
+        <aside class="sidebar-bg w-full md:w-[32%] p-8 flex flex-col gap-6 relative">
+            <!-- Decorative Top Border (Web Only) -->
+            <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-blue-500 to-indigo-600 no-print"></div>
 
             <!-- Profile Image -->
             <div class="flex justify-center mt-2">
-                <div class="w-44 h-44 rounded-full p-1 bg-white/10 backdrop-blur-sm shadow-xl">
+                <div class="w-40 h-40 rounded-full p-1 bg-white/10 backdrop-blur-sm shadow-xl">
                     <img src="https://raw.githubusercontent.com/raw-fun/abhishek-resume-site/main/profile.png" 
                          alt="Abhishek Sarker" 
                          class="w-full h-full object-cover rounded-full border-4 border-slate-800"
@@ -65,24 +116,24 @@
 
             <!-- Contact Information -->
             <section>
-                <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-slate-400 mb-4 border-b border-slate-700 pb-2">
+                <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-slate-400 mb-3 border-b border-slate-700 pb-2">
                     Contact Details
                 </h3>
-                <ul class="text-[11px] space-y-3 font-light text-slate-300">
-                    <li class="flex items-center gap-3 group">
-                        <span class="w-8 h-8 rounded bg-slate-800 flex items-center justify-center text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-all">
+                <ul class="text-[11px] space-y-2.5 font-light text-slate-300">
+                    <li class="flex items-center gap-3">
+                        <span class="w-6 h-6 rounded bg-slate-800 flex items-center justify-center text-blue-400 text-xs">
                             <i class="fas fa-phone"></i>
                         </span>
                         <span>+880 1712 622514</span>
                     </li>
-                    <li class="flex items-center gap-3 group">
-                        <span class="w-8 h-8 rounded bg-slate-800 flex items-center justify-center text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-all">
+                    <li class="flex items-center gap-3">
+                        <span class="w-6 h-6 rounded bg-slate-800 flex items-center justify-center text-blue-400 text-xs">
                             <i class="fas fa-envelope"></i>
                         </span>
                         <span class="break-all">abhishek.sarker@bracu.ac.bd</span>
                     </li>
-                    <li class="flex items-center gap-3 group">
-                        <span class="w-8 h-8 rounded bg-slate-800 flex items-center justify-center text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-all">
+                    <li class="flex items-center gap-3">
+                        <span class="w-6 h-6 rounded bg-slate-800 flex items-center justify-center text-blue-400 text-xs">
                             <i class="fas fa-map-marker-alt"></i>
                         </span>
                         <span>Dhaka 1207, Bangladesh</span>
@@ -90,56 +141,57 @@
                 </ul>
             </section>
 
-            <!-- AVAILABILITY / STATUS (Redesigned) -->
-            <section class="bg-slate-800/50 rounded-lg p-4 border-l-4 border-green-500 shadow-sm">
-                <div class="flex items-center gap-2 mb-2">
-                    <span class="relative flex h-2.5 w-2.5">
+            <!-- AVAILABILITY / STATUS -->
+            <section class="bg-slate-800/50 rounded-lg p-3 border-l-4 border-green-500 shadow-sm mt-2">
+                <div class="flex items-center gap-2 mb-1">
+                    <span class="relative flex h-2 w-2">
                       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                      <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                     </span>
-                    <h3 class="text-xs font-bold uppercase tracking-wider text-white">Current Status</h3>
+                    <h3 class="text-[10px] font-bold uppercase tracking-wider text-white">Status</h3>
                 </div>
-                <p class="text-[10px] text-slate-300 leading-relaxed font-light">
-                    Available <strong class="text-white">Immediately</strong> for internships. <br>
-                    Full-time availability post-April 2026.
+                <p class="text-[10px] text-slate-300 leading-tight font-light">
+                    Available <strong class="text-white">Immediately</strong> for internships.<br>
+                    Full-time post-April 2026.
                 </p>
             </section>
 
             <!-- Profile Overview -->
             <section>
-                <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-slate-400 mb-3 border-b border-slate-700 pb-2">
+                <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-slate-400 mb-2 border-b border-slate-700 pb-2">
                     Profile
                 </h3>
-                <p class="text-[10px] leading-5 text-justify font-light text-slate-300">
-                    A curious and driven professional architecting a career at the intersection of <span class="text-white font-medium">Culture</span>, <span class="text-white font-medium">Capital</span>, and <span class="text-white font-medium">Code</span>. I believe the future of business lies in empathetic leadership and data-informed creativity. Seeking a dynamic internship to apply this holistic lens to sales, marketing, and management.
+                <p class="text-[10px] leading-relaxed text-justify font-light text-slate-300">
+                    A curious and driven professional architecting a career at the intersection of <span class="text-white font-medium">Culture</span>, <span class="text-white font-medium">Capital</span>, and <span class="text-white font-medium">Code</span>. Believes the future of business lies in empathetic leadership and data-informed creativity. Seeking a dynamic internship to apply this holistic lens to sales, marketing, and management.
                 </p>
             </section>
 
             <!-- Core Competencies -->
             <section>
-                <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-slate-400 mb-4 border-b border-slate-700 pb-2">
+                <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-slate-400 mb-3 border-b border-slate-700 pb-2">
                     Core Competencies
                 </h3>
-                <ul class="text-[10px] space-y-2 font-light text-slate-300">
-                    <li class="flex items-start gap-2"><i class="fas fa-check text-blue-500 mt-0.5"></i> Sales & Business Development</li>
-                    <li class="flex items-start gap-2"><i class="fas fa-check text-blue-500 mt-0.5"></i> Strategic Thinking & Analysis</li>
-                    <li class="flex items-start gap-2"><i class="fas fa-check text-blue-500 mt-0.5"></i> Team Leadership & Management</li>
-                    <li class="flex items-start gap-2"><i class="fas fa-check text-blue-500 mt-0.5"></i> Entrepreneurial Venture Strategy</li>
-                    <li class="flex items-start gap-2"><i class="fas fa-check text-blue-500 mt-0.5"></i> Investment Analysis (RE/PE)</li>
-                    <li class="flex items-start gap-2"><i class="fas fa-check text-blue-500 mt-0.5"></i> Public Relations & Negotiation</li>
-                    <li class="flex items-start gap-2"><i class="fas fa-check text-blue-500 mt-0.5"></i> Business Analysis & Requirements</li>
+                <ul class="text-[10px] space-y-1.5 font-light text-slate-300">
+                    <li class="flex items-start gap-2"><i class="fas fa-check text-blue-500 mt-0.5 text-[8px]"></i> Sales & Business Dev.</li>
+                    <li class="flex items-start gap-2"><i class="fas fa-check text-blue-500 mt-0.5 text-[8px]"></i> Strategic Thinking</li>
+                    <li class="flex items-start gap-2"><i class="fas fa-check text-blue-500 mt-0.5 text-[8px]"></i> Team Leadership</li>
+                    <li class="flex items-start gap-2"><i class="fas fa-check text-blue-500 mt-0.5 text-[8px]"></i> Venture Strategy</li>
+                    <li class="flex items-start gap-2"><i class="fas fa-check text-blue-500 mt-0.5 text-[8px]"></i> Investment Analysis</li>
+                    <li class="flex items-start gap-2"><i class="fas fa-check text-blue-500 mt-0.5 text-[8px]"></i> PR & Negotiation</li>
+                    <li class="flex items-start gap-2"><i class="fas fa-check text-blue-500 mt-0.5 text-[8px]"></i> Business Analysis</li>
+                    <li class="flex items-start gap-2"><i class="fas fa-check text-blue-500 mt-0.5 text-[8px]"></i> Tech Fluency</li>
                 </ul>
             </section>
 
             <!-- Tech Skills -->
             <section>
-                <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-slate-400 mb-4 border-b border-slate-700 pb-2">
+                <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-slate-400 mb-3 border-b border-slate-700 pb-2">
                     Technical Arsenal
                 </h3>
-                <div class="text-[10px] space-y-3 font-light text-slate-300">
+                <div class="text-[10px] space-y-2 font-light text-slate-300">
                     <div>
                         <div class="text-white font-medium mb-0.5">AI & Productivity</div>
-                        <div class="opacity-80">ChatGPT, DeepSeek, Manus AI, MS Office, Google Suite</div>
+                        <div class="opacity-80">ChatGPT, DeepSeek, Manus AI, MS Office</div>
                     </div>
                     <div>
                         <div class="text-white font-medium mb-0.5">Development</div>
@@ -147,102 +199,111 @@
                     </div>
                     <div>
                         <div class="text-white font-medium mb-0.5">Digital Platforms</div>
-                        <div class="opacity-80">Social Media Management, Content Strategy</div>
+                        <div class="opacity-80">Social Media, Content Strategy</div>
                     </div>
                 </div>
             </section>
             
             <!-- Interests Tags -->
             <section>
-                <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-slate-400 mb-4 border-b border-slate-700 pb-2">
+                <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-slate-400 mb-3 border-b border-slate-700 pb-2">
                     Interests
                 </h3>
                 <div class="flex flex-wrap gap-1.5">
-                    <span class="px-2 py-1 bg-slate-800 text-[9px] rounded text-slate-300 border border-slate-700">Venture Capital</span>
-                    <span class="px-2 py-1 bg-slate-800 text-[9px] rounded text-slate-300 border border-slate-700">Real Estate</span>
-                    <span class="px-2 py-1 bg-slate-800 text-[9px] rounded text-slate-300 border border-slate-700">Behavioral Econ</span>
-                    <span class="px-2 py-1 bg-slate-800 text-[9px] rounded text-slate-300 border border-slate-700">AI Integration</span>
-                    <span class="px-2 py-1 bg-slate-800 text-[9px] rounded text-slate-300 border border-slate-700">Music</span>
+                    <span class="px-2 py-0.5 bg-slate-800 text-[9px] rounded text-slate-300 border border-slate-700">Venture Capital</span>
+                    <span class="px-2 py-0.5 bg-slate-800 text-[9px] rounded text-slate-300 border border-slate-700">Real Estate</span>
+                    <span class="px-2 py-0.5 bg-slate-800 text-[9px] rounded text-slate-300 border border-slate-700">Behavioral Econ</span>
+                    <span class="px-2 py-0.5 bg-slate-800 text-[9px] rounded text-slate-300 border border-slate-700">AI</span>
+                    <span class="px-2 py-0.5 bg-slate-800 text-[9px] rounded text-slate-300 border border-slate-700">Music</span>
                 </div>
             </section>
         </aside>
 
         <!-- ================= MAIN CONTENT (RIGHT) ================= -->
-        <main class="w-full md:w-[68%] p-10 md:p-16 bg-white text-slate-800 relative">
-            <!-- Watermark text (optional, subtle) -->
-            <div class="absolute top-6 right-10 text-[10px] text-slate-300 font-bold tracking-widest uppercase no-print">Resume 2025</div>
+        <main class="w-full md:w-[68%] p-10 md:p-14 bg-white text-slate-800 relative">
+            <!-- Watermark text (Web Only) -->
+            <div class="absolute top-6 right-10 text-[10px] text-slate-300 font-bold tracking-widest uppercase watermark">Resume 2025</div>
 
             <!-- Header -->
-            <header class="mb-14">
+            <header class="mb-10">
                 <h1 class="text-5xl font-black text-slate-900 tracking-tight mb-2 uppercase">Abhishek <span class="text-blue-700">Sarker</span></h1>
                 <p class="text-sm font-semibold tracking-[0.3em] uppercase text-slate-500">Business Graduate & Emerging Leader</p>
             </header>
 
             <!-- Education -->
-            <section class="mb-12 page-break-avoid">
-                <div class="flex items-center gap-4 mb-8">
-                    <div class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-slate-800 shadow-sm border border-slate-200">
-                        <i class="fas fa-graduation-cap text-lg"></i>
+            <section class="mb-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-slate-800 shadow-sm border border-slate-200">
+                        <i class="fas fa-graduation-cap text-sm"></i>
                     </div>
-                    <h2 class="text-xl font-bold uppercase tracking-wider text-slate-800">Education</h2>
+                    <h2 class="text-lg font-bold uppercase tracking-wider text-slate-800">Education</h2>
                 </div>
 
-                <div class="border-l-2 border-slate-200 ml-5 space-y-10 pl-8 pb-2">
+                <div class="border-l-2 border-slate-200 ml-4 space-y-8 pl-6 pb-2">
                     <!-- BBA -->
                     <div class="relative">
-                        <span class="absolute -left-[41px] top-1.5 h-4 w-4 rounded-full border-4 border-white bg-blue-600 shadow-sm"></span>
-                        <div class="flex flex-col sm:flex-row justify-between sm:items-baseline mb-2">
-                            <h3 class="text-lg font-bold text-slate-800">Bachelor of Business Administration (BBA)</h3>
-                            <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded">2018 - 2026 (Exp)</span>
+                        <span class="absolute -left-[31px] top-1.5 h-3 w-3 rounded-full border-2 border-white bg-blue-600 shadow-sm"></span>
+                        <div class="flex flex-col sm:flex-row justify-between sm:items-baseline mb-1">
+                            <h3 class="text-base font-bold text-slate-800">Bachelor of Business Administration (BBA)</h3>
+                            <span class="text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded">2018 - 2026 (Exp)</span>
                         </div>
-                        <div class="text-sm font-semibold text-slate-600 mb-2">BRAC University, Dhaka</div>
-                        <p class="text-sm text-slate-500 leading-relaxed mb-2">
+                        <div class="text-xs font-semibold text-slate-600 mb-1">BRAC University, Dhaka</div>
+                        <p class="text-[11px] text-slate-500 leading-relaxed mb-1">
                             Focusing on entrepreneurial thinking, leadership, and technology-driven business strategy. Cultivated a founder’s mindset with deep interest in venture creation.
                         </p>
-                        <p class="text-xs text-slate-500 italic bg-slate-50 p-2 rounded border-l-2 border-slate-300">
+                        <p class="text-[10px] text-slate-500 italic bg-slate-50 p-1.5 rounded border-l-2 border-slate-300">
                             <strong>Relevant Coursework:</strong> Foundational programming in Python, Java & C++.
                         </p>
                     </div>
 
                     <!-- Music -->
                     <div class="relative">
-                        <span class="absolute -left-[41px] top-1.5 h-4 w-4 rounded-full border-4 border-white bg-slate-400 shadow-sm"></span>
-                        <div class="flex flex-col sm:flex-row justify-between sm:items-baseline mb-2">
-                            <h3 class="text-lg font-bold text-slate-800">Bachelor of Music</h3>
-                            <span class="text-xs font-bold text-slate-500 bg-slate-50 px-2 py-1 rounded">Dec 2014</span>
+                        <span class="absolute -left-[31px] top-1.5 h-3 w-3 rounded-full border-2 border-white bg-slate-400 shadow-sm"></span>
+                        <div class="flex flex-col sm:flex-row justify-between sm:items-baseline mb-1">
+                            <h3 class="text-base font-bold text-slate-800">Bachelor of Music</h3>
+                            <span class="text-[10px] font-bold text-slate-500 bg-slate-50 px-2 py-0.5 rounded">Dec 2014</span>
                         </div>
-                        <div class="text-sm font-semibold text-slate-600 mb-2">BulBul Lolita Kola Academy (BAFA)</div>
-                        <p class="text-sm text-slate-500 leading-relaxed">
+                        <div class="text-xs font-semibold text-slate-600 mb-1">BulBul Lolita Kola Academy (BAFA)</div>
+                        <p class="text-[11px] text-slate-500 leading-relaxed">
                             Specialized in <strong>Rabindra Shangeet & Classical Music</strong>. Mastered intricate raga structures, disciplined practice, and performance under pressure.
                         </p>
                     </div>
 
                     <!-- A Levels -->
                     <div class="relative">
-                        <span class="absolute -left-[41px] top-1.5 h-4 w-4 rounded-full border-4 border-white bg-slate-400 shadow-sm"></span>
-                        <h3 class="text-base font-bold text-slate-800">GCE A-Levels (Science)</h3>
-                        <div class="text-sm text-slate-600">Sunnydale, Dhaka <span class="mx-2 text-slate-300">|</span> 2017</div>
+                        <span class="absolute -left-[31px] top-1.5 h-3 w-3 rounded-full border-2 border-white bg-slate-400 shadow-sm"></span>
+                        <h3 class="text-sm font-bold text-slate-800">GCE A-Levels (Science)</h3>
+                        <div class="text-[10px] text-slate-600">Sunnydale, Dhaka <span class="mx-2 text-slate-300">|</span> 2017</div>
+                    </div>
+                    
+                    <!-- O Levels -->
+                    <div class="relative">
+                        <span class="absolute -left-[31px] top-1.5 h-3 w-3 rounded-full border-2 border-white bg-slate-400 shadow-sm"></span>
+                        <h3 class="text-sm font-bold text-slate-800">GCE O-Levels (Science)</h3>
+                        <div class="text-[10px] text-slate-600">Sunnydale, Dhaka <span class="mx-2 text-slate-300">|</span> 2015</div>
                     </div>
                 </div>
             </section>
 
-            <!-- Experience / Projects -->
-            <section class="page-break-avoid">
-                <div class="flex items-center gap-4 mb-8">
-                    <div class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-slate-800 shadow-sm border border-slate-200">
-                        <i class="fas fa-briefcase text-lg"></i>
+            <!-- ================= PAGE 2 STARTS HERE ================= -->
+            
+            <!-- Experience / Projects (Forced Break Before This Section) -->
+            <section class="break-before-page">
+                <div class="flex items-center gap-4 mb-6 pt-4 md:pt-0">
+                    <div class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-slate-800 shadow-sm border border-slate-200">
+                        <i class="fas fa-briefcase text-sm"></i>
                     </div>
-                    <h2 class="text-xl font-bold uppercase tracking-wider text-slate-800">Key Projects & Leadership</h2>
+                    <h2 class="text-lg font-bold uppercase tracking-wider text-slate-800">Key Projects & Leadership</h2>
                 </div>
 
-                <div class="border-l-2 border-slate-200 ml-5 space-y-10 pl-8">
+                <div class="border-l-2 border-slate-200 ml-4 space-y-8 pl-6">
                     
                     <!-- Sales Strategy -->
                     <div class="relative">
-                        <span class="absolute -left-[41px] top-1.5 h-4 w-4 rounded-full border-4 border-white bg-blue-600 shadow-sm"></span>
-                        <h3 class="text-lg font-bold text-slate-800">Sales & Venture Strategy Project</h3>
-                        <div class="text-xs font-bold text-blue-600 mb-2">BRAC University | Academic Lead | 2024</div>
-                        <ul class="list-disc ml-4 text-sm text-slate-600 leading-relaxed space-y-1 marker:text-blue-300">
+                        <span class="absolute -left-[31px] top-1.5 h-3 w-3 rounded-full border-2 border-white bg-blue-600 shadow-sm"></span>
+                        <h3 class="text-base font-bold text-slate-800">Sales & Venture Strategy Project</h3>
+                        <div class="text-[11px] font-bold text-blue-600 mb-1">BRAC University | Academic Lead | 2024</div>
+                        <ul class="list-disc ml-4 text-[11px] text-slate-600 leading-relaxed space-y-1 marker:text-blue-300">
                             <li>Orchestrated a comprehensive go-to-market strategy for an AI-powered service, analyzing market size and sales funnels.</li>
                             <li>Awarded top marks for strategic depth and persuasive panel presentation.</li>
                         </ul>
@@ -250,10 +311,10 @@
 
                     <!-- Investment Research -->
                     <div class="relative">
-                        <span class="absolute -left-[41px] top-1.5 h-4 w-4 rounded-full border-4 border-white bg-blue-600 shadow-sm"></span>
-                        <h3 class="text-lg font-bold text-slate-800">Emerging Markets Investment Analysis</h3>
-                        <div class="text-xs font-bold text-blue-600 mb-2">Independent Researcher | 2023 - Present</div>
-                        <ul class="list-disc ml-4 text-sm text-slate-600 leading-relaxed space-y-1 marker:text-blue-300">
+                        <span class="absolute -left-[31px] top-1.5 h-3 w-3 rounded-full border-2 border-white bg-blue-600 shadow-sm"></span>
+                        <h3 class="text-base font-bold text-slate-800">Emerging Markets Investment Analysis</h3>
+                        <div class="text-[11px] font-bold text-blue-600 mb-1">Independent Researcher | 2023 - Present</div>
+                        <ul class="list-disc ml-4 text-[11px] text-slate-600 leading-relaxed space-y-1 marker:text-blue-300">
                             <li>Conducting global analysis (USA, Africa, Dubai, South Asia) on Real Estate, PE, and Stock opportunities.</li>
                             <li>Building robust financial models to assess risk/return profiles for personal investment theses.</li>
                         </ul>
@@ -261,21 +322,31 @@
 
                     <!-- MUN -->
                     <div class="relative">
-                        <span class="absolute -left-[41px] top-1.5 h-4 w-4 rounded-full border-4 border-white bg-slate-400 shadow-sm"></span>
-                        <h3 class="text-base font-bold text-slate-800">Diplomatic Engagement (MUN)</h3>
-                        <div class="text-xs text-slate-500 mb-2">DUMUN, SDMUN, GHMUN | 2015 - 2024</div>
-                        <p class="text-sm text-slate-600">
+                        <span class="absolute -left-[31px] top-1.5 h-3 w-3 rounded-full border-2 border-white bg-slate-400 shadow-sm"></span>
+                        <h3 class="text-sm font-bold text-slate-800">Diplomatic Engagement (MUN)</h3>
+                        <div class="text-[10px] text-slate-500 mb-1">DUMUN, SDMUN, GHMUN | 2015 - 2024</div>
+                        <p class="text-[11px] text-slate-600 leading-relaxed">
                             Researched complex geopolitical issues and negotiated resolutions, honing public speaking and consensus-building skills.
                         </p>
                     </div>
 
                     <!-- Community -->
                     <div class="relative">
-                        <span class="absolute -left-[41px] top-1.5 h-4 w-4 rounded-full border-4 border-white bg-slate-400 shadow-sm"></span>
-                        <h3 class="text-base font-bold text-slate-800">Social Impact & Volunteering</h3>
-                        <div class="text-xs text-slate-500 mb-2">Jaago, Gontobbo, Gaach Lagao | 2016 - 2023</div>
-                        <p class="text-sm text-slate-600">
+                        <span class="absolute -left-[31px] top-1.5 h-3 w-3 rounded-full border-2 border-white bg-slate-400 shadow-sm"></span>
+                        <h3 class="text-sm font-bold text-slate-800">Social Impact & Volunteering</h3>
+                        <div class="text-[10px] text-slate-500 mb-1">Jaago, Gontobbo, Gaach Lagao | 2016 - 2023</div>
+                        <p class="text-[11px] text-slate-600 leading-relaxed">
                             Executed educational outreach and environmental campaigns. Gained hands-on experience in logistics and volunteer coordination.
+                        </p>
+                    </div>
+
+                    <!-- Student Leadership -->
+                    <div class="relative">
+                        <span class="absolute -left-[31px] top-1.5 h-3 w-3 rounded-full border-2 border-white bg-slate-400 shadow-sm"></span>
+                        <h3 class="text-sm font-bold text-slate-800">Student Leadership & Extra-Curriculars</h3>
+                        <div class="text-[10px] text-slate-500 mb-1">Scouts, Sports, Committees | 2004 - Present</div>
+                        <p class="text-[11px] text-slate-600 leading-relaxed">
+                            Roles in committees organizing music, sports, and debate events. Managing budgets and coordinating teams.
                         </p>
                     </div>
 
@@ -286,9 +357,14 @@
     </div>
 
     <!-- Print Button -->
-    <button onclick="window.print()" class="no-print fixed bottom-8 right-8 bg-slate-900 text-white px-6 py-3 rounded-full shadow-lg hover:bg-blue-700 transition flex items-center gap-2 font-medium border border-slate-700">
-        <i class="fas fa-file-pdf"></i> Download PDF
-    </button>
+    <div class="fixed bottom-8 right-8 no-print flex flex-col items-end gap-2 group">
+        <div class="bg-gray-800 text-white text-xs px-3 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+            Best viewed in Chrome/Edge "Save as PDF"
+        </div>
+        <button onclick="window.print()" class="bg-slate-900 text-white px-6 py-3 rounded-full shadow-lg hover:bg-blue-700 transition flex items-center gap-2 font-medium border border-slate-700">
+            <i class="fas fa-file-pdf"></i> Download PDF (2 Pages)
+        </button>
+    </div>
 
 </body>
 </html>
