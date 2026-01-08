@@ -12,9 +12,9 @@
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f3f4f6;
-            -webkit-print-color-adjust: exact;
+            -webkit-print-color-adjust:  exact;
         }
-        .sidebar {
+        . sidebar {
             background-color: #1a2a44; /* Navy Blue */
             color: #ffffff;
         }
@@ -30,7 +30,7 @@
         /* Print Specific Styles */
         @media print {
             body { background-color: white; margin: 0; padding: 0; }
-            .no-print { display: none !important; }
+            .no-print { display: none ! important; }
             .main-container { 
                 box-shadow: none !important; 
                 width: 100% !important; 
@@ -41,7 +41,7 @@
             .sidebar { padding: 20px !important; width: 35% !important; }
             main { padding: 20px !important; width: 65% !important; }
             /* Ensure background colors print */
-            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            * { -webkit-print-color-adjust:  exact ! important; print-color-adjust: exact !important; }
         }
     </style>
 </head>
@@ -52,10 +52,14 @@
         <!-- ================= SIDEBAR (LEFT COLUMN) ================= -->
         <aside class="sidebar w-full md:w-[35%] p-8 flex flex-col gap-8">
             
-            <!-- Profile Image -->
+            <!-- Profile Image - UPDATED WITH YOUR IMAGE -->
             <div class="flex justify-center mb-2">
                 <div class="w-44 h-44 rounded-full border-4 border-white overflow-hidden bg-gray-300 shadow-lg relative">
-                    <img src="https://ui-avatars.com/api/?name=Abhishek+Sarker&background=0D8ABC&color=fff&size=256" alt="Abhishek Sarker" class="w-full h-full object-cover">
+                    <!-- ✅ আপনার আপলোড করা ইমেজ এখানে ব্যবহার করা হয়েছে -->
+                    <img src="https://raw.githubusercontent.com/raw-fun/abhishek-resume-site/main/profile.png" 
+                         alt="Abhishek Sarker" 
+                         class="w-full h-full object-cover"
+                         crossorigin="anonymous">
                 </div>
             </div>
 
@@ -86,7 +90,7 @@
                     <i class="fas fa-user text-sm"></i> Profile Overview
                 </h2>
                 <p class="text-xs text-gray-300 leading-relaxed text-justify font-light">
-                    A curious and driven professional architecting a career at the intersection of culture (Music), capital (Investments/Real Estate), and code (AI). Believes the future of business lies in empathetic leadership, data-informed creativity, and strategic asset building—whether in people, startups, or portfolios. Seeking a dynamic internship to apply this holistic lens to sales, marketing, and management, directly contributing to growth and innovation.
+                    A curious and driven professional architecting a career at the intersection of culture (Music), capital (Investments/Real Estate), and code (AI). Believes the future of business lies in empathetic leadership, data-informed creativity, and strategic asset building—whether in people, startups, or portfolios.  Seeking a dynamic internship to apply this holistic lens to sales, marketing, and management, directly contributing to growth and innovation. 
                 </p>
             </section>
 
@@ -96,9 +100,9 @@
                     <i class="fas fa-bullseye text-sm"></i> Objective
                 </h2>
                 <div class="text-xs text-white space-y-2">
-                    <p class="font-semibold text-blue-200 uppercase mb-1"><i class="fas fa-clock mr-1"></i> Availability:</p>
+                    <p class="font-semibold text-blue-200 uppercase mb-1"><i class="fas fa-clock mr-1"></i> Availability: </p>
                     <p class="leading-relaxed font-light">
-                        Immediately for internship opportunities, with full-time availability post-April 2026.
+                        Immediately for internship opportunities, with full-time availability post-April 2026. 
                     </p>
                 </div>
             </section>
@@ -160,11 +164,11 @@
                     </div>
                     <div>
                         <strong class="text-white block mb-1">AI Applications:</strong>
-                        ChatGPT, DeepSeek, Manus AI, Midjourney, Veo3, Nano Banana.
+                        ChatGPT, DeepSeek, Manus AI, Midjourney, Veo3, Nano Banana. 
                     </div>
                     <div>
                         <strong class="text-white block mb-1">Coding Basics:</strong>
-                        Python, Java, C++.
+                        Python, Java, C++. 
                     </div>
                     <div>
                         <strong class="text-white block mb-1">Social Media:</strong>
@@ -179,7 +183,7 @@
                     <i class="fas fa-language text-sm"></i> Languages
                 </h2>
                 <div class="text-xs space-y-1">
-                    <p><strong class="text-white">English:</strong> Fluent</p>
+                    <p><strong class="text-white">English: </strong> Fluent</p>
                     <p><strong class="text-white">Bengali:</strong> Native</p>
                     <p><strong class="text-white">Hindi:</strong> Passive</p>
                     <p><strong class="text-white">Japanese:</strong> Passive</p>
@@ -195,8 +199,8 @@
                     <span class="text-[10px] px-2 py-1 border border-gray-500 rounded hover:bg-white hover:text-navy transition">Venture Capital</span>
                     <span class="text-[10px] px-2 py-1 border border-gray-500 rounded hover:bg-white hover:text-navy transition">AI Integration</span>
                     <span class="text-[10px] px-2 py-1 border border-gray-500 rounded hover:bg-white hover:text-navy transition">Real Estate</span>
-                    <span class="text-[10px] px-2 py-1 border border-gray-500 rounded hover:bg-white hover:text-navy transition">Behavioral Econ</span>
-                    <span class="text-[10px] px-2 py-1 border border-gray-500 rounded hover:bg-white hover:text-navy transition">Bitcoin/Alt Assets</span>
+                    <span class="text-[10px] px-2 py-1 border border-gray-500 rounded hover:bg-white hover: text-navy transition">Behavioral Econ</span>
+                    <span class="text-[10px] px-2 py-1 border border-gray-500 rounded hover:bg-white hover: text-navy transition">Bitcoin/Alt Assets</span>
                     <span class="text-[10px] px-2 py-1 border border-gray-500 rounded hover:bg-white hover:text-navy transition">Music & Sports</span>
                 </div>
             </section>
@@ -229,10 +233,10 @@
                             <span class="italic text-gray-500 font-semibold bg-gray-100 px-2 py-0.5 rounded">Jan 2018 - Apr 2026 (Exp)</span>
                         </div>
                         <ul class="list-disc list-outside ml-4 text-sm text-gray-700 space-y-1">
-                            <li>Comprehensive education in entrepreneurial thinking, people-centric leadership, and strategic communication.</li>
+                            <li>Comprehensive education in entrepreneurial thinking, people-centric leadership, and strategic communication. </li>
                             <li>Expertise in sales principles, management fundamentals, and technology-driven business strategy.</li>
-                            <li>Cultivated a founder’s mindset with interest in venture creation and emerging asset classes (RE, PE, Digital Assets, AI).</li>
-                            <li><strong>Coursework:</strong> Basic Education in light coding at Python, Java & C++.</li>
+                            <li>Cultivated a founder's mindset with interest in venture creation and emerging asset classes (RE, PE, Digital Assets, AI).</li>
+                            <li><strong>Coursework:</strong> Basic Education in light coding at Python, Java & C++. </li>
                         </ul>
                     </div>
 
@@ -251,7 +255,7 @@
                         <ul class="list-disc list-outside ml-4 text-sm text-gray-700 space-y-1">
                             <li>Mastered intricate raga structures and time signatures (taal), developing exceptional attention to detail.</li>
                             <li>Performed in solo and ensemble settings, requiring rigorous preparation and focus under pressure.</li>
-                            <li>Gained extensive stage experience, building confidence in public presentation.</li>
+                            <li>Gained extensive stage experience, building confidence in public presentation. </li>
                         </ul>
                     </div>
 
@@ -306,7 +310,7 @@
                         <div class="text-sm text-blue-700 font-semibold mb-2">Independent Research | 2023 - Present</div>
                         <ul class="list-disc list-outside ml-4 text-sm text-gray-700 space-y-1">
                             <li>Conduct ongoing analysis of real estate, PE, and stock opportunities in USA, Africa, Europe, Dubai, and South Asia.</li>
-                            <li>Building financial models and assessing risk/return profiles.</li>
+                            <li>Building financial models and assessing risk/return profiles. </li>
                             <li>Monitor trends in digital assets and AI-driven business models to inform personal investment thesis.</li>
                         </ul>
                     </div>
@@ -339,7 +343,7 @@
                         <h4 class="font-bold text-lg text-navy">Student Leadership & Extra-Curriculars</h4>
                         <div class="text-sm text-blue-700 font-semibold mb-2">Scouts, Sports, Committees | 2004 - Present</div>
                         <ul class="list-disc list-outside ml-4 text-sm text-gray-700 space-y-1">
-                            <li><strong>Leadership:</strong> Roles in student committees organizing music, sports, scout, and debate events. Managing budgets and coordinating teams.</li>
+                            <li><strong>Leadership: </strong> Roles in student committees organizing music, sports, scout, and debate events.  Managing budgets and coordinating teams.</li>
                             <li><strong>Scouts & Sports:</strong> Participated in leadership camps and inter-university tournaments, developing resilience and discipline.</li>
                         </ul>
                     </div>
